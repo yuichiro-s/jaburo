@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load bootstrap3 %}
+{% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Jaburo</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery=True %}
+    <script type="text/javascript" src="/acl_search{% static 'acl_search/search_phrases.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="/acl_search{% static 'acl_search/search.css' %}" />
+</head>
+<body>
+
+<input id="init-query" type="hidden" value="{{ init_query }}">
+<input id="init-mode" type="hidden" value="{{ init_mode }}">
+<input id="init-like" type="hidden" value="{{ init_like }}">
+
+<input id="search-phrases-url" type="hidden" value="{{ search_phrases_url }}">
+<input id="search-examples-url" type="hidden" value="{{ search_examples_url }}">
+
+<header>
+    <div class="btn-group" data-toggle="buttons">
+        {% if init_mode == 'full-text' %}
+        <label id="search-mode-phrase" class="btn btn-primary">
+            <input id="search-mode-phrase-radio" type="radio" name="search-mode">Phrase
+        </label>
+        <label id="search-mode-full-text" class="btn btn-primary active">
+            <input id="search-mode-full-text-radio" type="radio" name="search-mode">Full-Text
+        </label>
+        {% else %}
+        <label id="search-mode-phrase" class="btn btn-primary active">
+            <input id="search-mode-phrase-radio" type="radio" name="search-mode">Phrase
+        </label>
+        <label id="search-mode-full-text" class="btn btn-primary">
+            <input id="search-mode-full-text-radio" type="radio" name="search-mode">Full-Text
+        </label>
+        {% endif %}
+    </div>
+    <div class="btn-group" data-toggle="buttons">
+
+        {% if init_like %}
+        <button id="similar-button" type="button" class="btn active" data-toggle="button" aria-pressed="true" autocomplete="off" style="display: none">
+            similar
+        </button>
+        {% else %}
+        <button id="similar-button" type="button" class="btn" data-toggle="button" aria-pressed="false" autocomplete="off" style="display: none">
+            similar
+        </button>
+        {% endif %}
+
+    </div>
+    <input id="phrase-search-input" type="search" class="form-control" placeholder="Search"/>
+</header>
+
+<div class="col-md-4 .pre-scrollable" role="complementary">
+    <form>
+    <div id="phrase-list" class="list-group"></div>
+</div>
+<div class="col-md-8 .pre-scrollable" role="main">
+    <div class="btn-group" data-toggle="buttons">
+        <button id="all-sections-button" class="btn btn-sm btn-primary active" aria-pressed="true"> All </button>
+        <button class="section-btn btn btn-sm"> Abstract </button>
+        <button class="section-btn btn btn-sm"> Introduction </button>
+        <button class="section-btn btn btn-sm"> Related Work </button>
+        <button class="section-btn btn btn-sm"> Method </button>
+        <button class="section-btn btn btn-sm"> Model </button>
+        <button class="section-btn btn btn-sm"> Features </button>
+        <button class="section-btn btn btn-sm"> Data </button>
+        <button class="section-btn btn btn-sm"> Experiments </button>
+        <button class="section-btn btn btn-sm"> Results </button>
+        <button class="section-btn btn btn-sm"> Conclusion </button>
+        <!--<button class="section-btn btn btn-sm"> Acknowledgements </button>-->
+    </div>
+    <p id="total-hits"></p>
+    <div id="paper-list" class="panel-group"></div>
+</div>
+
+</body>
+</html>

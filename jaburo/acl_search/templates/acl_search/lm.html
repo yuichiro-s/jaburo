@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load bootstrap3 %}
+{% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Jaburo</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery=True %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.selection/1.0.1/jquery.selection.min.js"></script>
+
+    <script type="text/javascript" src="{% static 'acl_search/analyze_text.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'acl_search/lm.css' %}" />
+</head>
+<body>
+
+<div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="section-title-text">Section Title</label>
+            <input type="text" class="form-control" id="section-title-text">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label style="color: #fff">.</label>
+        <div class="panel panel-default">
+            <div id="analysis-panel-title" class="panel-body">
+                <div></div>
+            </div
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="section-textarea">Body</label>
+            <textarea class="form-control" rows="20" id="section-textarea"></textarea>
+        </div>
+        <button id="search-phrase-button" class="section-btn btn pull-right">Search similar phrases</button>
+    </div>
+    <div class="col-md-6">
+        <label style="color: #fff">.</label>
+        <div class="panel panel-default">
+            <div id="analysis-panel-body" class="panel-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

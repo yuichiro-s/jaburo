@@ -1,0 +1,7 @@
+em {
+    font-weight: bold;
+}
+
+.pre-scrollable {
+    max-height: 100px;
+}

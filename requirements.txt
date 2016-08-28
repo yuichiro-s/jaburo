@@ -1,0 +1,5 @@
+beautifulsoup4==4.5.0
+Django==1.10
+django-bootstrap3==7.0.1
+elasticsearch==2.3.0
+spacy==0.101.0
