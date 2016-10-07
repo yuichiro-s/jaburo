@@ -100,11 +100,13 @@ def set_analyzer(client, index_name):
                 },
                 "body": {
                     "type": "string",
-                    "analyzer": "my_english"
+                    #"analyzer": "my_english",
+                    "analyzer": "standard",
                 },
                 "section": {
                     "type": "string",
-                    "analyzer": "my_english",
+                    #"analyzer": "my_english",
+                    "analyzer": "standard",
                     "fields": {
                         "raw": {
                             "type": "string",

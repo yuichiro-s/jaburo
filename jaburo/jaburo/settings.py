@@ -126,35 +126,3 @@ STATIC_URL = '/static/'
 import elasticsearch
 ES_HOST = 'http://localhost:9200/'
 ES_CLIENT = elasticsearch.Elasticsearch(ES_HOST)
-
-
-# RNNLM
-import sys
-from acl_search.rnnlm import Rnnlm
-import chainer.links
-import chainer.serializers
-print('Loading RNNLM...', file=sys.stderr)
-vocab_size = 10001
-hidden_dim = 128
-#hidden_dim = 650
-LM = chainer.links.Classifier(Rnnlm(vocab_size, hidden_dim, train=False))
-LM_LOCK = None
-chainer.serializers.load_npz('h.128/model_iter_10000', LM)
-#chainer.serializers.load_npz('h.650/model_iter_190000', LM)
-VOCAB = {'<UNK>': 0}
-VOCAB_REV = ['<UNK>']
-with open('vocab') as f:
-    for i, line in enumerate(f):
-        if i >= 10000:
-            break
-        w = line.strip().split()[1]
-        VOCAB[w] = i+1
-        VOCAB_REV.append(w)
-
-
-# Spacy
-import spacy
-print('Loading spacy model...', file=sys.stderr)
-SPACY_EN_MODEL = spacy.load('en')
-#SPACY_EN_MODEL = None
-

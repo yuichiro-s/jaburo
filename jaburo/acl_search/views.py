@@ -3,7 +3,6 @@ from django.urls import reverse
 from django.shortcuts import render
 
 from . import es_api
-from .analysis import analyze_text, generate_text
 
 
 DEFAULT_PHRASE_NUM = 30
@@ -18,10 +17,6 @@ def search(request):
         'init_mode': request.GET.get('mode', ''),
         'init_like': request.GET.get('like'),
     })
-
-
-def lm(request):
-    return render(request, 'acl_search/lm.html')
 
 
 def search_phrases(request):
@@ -62,23 +57,4 @@ def search_examples(request):
         'total': total_hits,
         'hits': papers,
     }
-    return JsonResponse(res)
-
-
-def analyze(request):
-    section = request.GET.get('section', '')
-    text = request.GET.get('text', '')
-    res = analyze_text(section, text)
-    #import json
-    #print(json.dumps(res['text'], indent=2))
-    return JsonResponse(res)
-
-
-def generate(request):
-    section = request.GET.get('section', '')
-    text = request.GET.get('text', '')
-    temp = float(request.GET.get('temp', '3.0'))
-    random = bool(request.GET.get('temp', 'True'))
-    max_len = int(request.GET.get('max_len', 300))
-    res = generate_text(section, text, temp, random, max_len)
     return JsonResponse(res)

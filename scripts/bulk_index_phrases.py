@@ -47,7 +47,8 @@ def set_mapping(client):
                 'properties': {
                     'phrase': {
                         'type':      'string',
-                        'analyzer':  'my_english'
+                        #'analyzer':  'my_english'
+                        'analyzer':  'standard',
                         },
                     'freq': {
                         'type':      'integer',
